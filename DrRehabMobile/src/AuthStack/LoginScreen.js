@@ -9,7 +9,7 @@ export function LoginScreen() {
     const { signIn } = React.useContext(AuthContext);
 
     return (
-        <View>
+        <View style={{ marginTop: 100 }}>
             <TextInput
                 placeholder="Username"
                 value={username}

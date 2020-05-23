@@ -9,9 +9,8 @@ import ProgressCircle from 'react-native-progress-circle';
 export function HomeScreen() {
     const { signOut } = React.useContext(AuthContext);
     return (
-
         <ScrollView style={{ backgroundColor: '#ffffff' }}>
-            <View style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ flex: 1, marginTop: 50, justifyContent: 'space-between', alignItems: 'center' }}>
                 <Image source={require('../../Images/DREHAB.png')} style={{ marginTop: 10, marginBottom: 10, height: 45, resizeMode: 'contain' }} />
                 <View style={styles.card1}>
                     <View style={{ flex: 0.3, padding: 15 }}>

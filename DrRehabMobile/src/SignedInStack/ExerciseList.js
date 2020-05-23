@@ -6,8 +6,7 @@ import axios from 'axios';
 const IP = "http://192.168.1.9:3000";
 
 
-
-export function ExerciseListScreen() {
+export function ExerciseListScreen({ navigation }) {
     const { signOut } = React.useContext(AuthContext);
     const [error, setError] = React.useState('');
     const [list, setList] = React.useState('');
@@ -37,7 +36,7 @@ export function ExerciseListScreen() {
 
     return (
         <ScrollView style={{ backgroundColor: '#fff' }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+            <View style={{ marginTop: 50, justifyContent: 'center', alignItems: 'center', flex: 1 }}>
                 <Image source={require('../../Images/DREHAB.png')} style={{ marginTop: 10, height: 45, resizeMode: 'contain' }} />
                 <View style={styles.card}>
                     <Text style={styles.header}>Exercises</Text>
@@ -51,22 +50,23 @@ export function ExerciseListScreen() {
                         data={list}
                         renderItem={({ item }) =>
                             <View style={{ flex: 0.1, flexDirection: 'row' }}>
-                                <View>
+                                <View style={{ flex: 1 }}>
                                     <Text style={styles.flatlistText}>{item.ExerciseID}</Text>
-                                    <Text style={styles.content}>Estimated time:5 minutes</Text>
+                                    <Text style={styles.content}>Estimated time: 5 minutes</Text>
                                 </View>
                                 {item.ActiveExercise == 0 ?
                                     <View style={styles.circleGradientCompleted}>
                                         <Text style={styles.buttontext}>Completed</Text>
                                     </View>
                                     : <View style={styles.circleGradient}>
-                                        <TouchableHighlight onPress={() => navigate('Instruction')}>
+                                        <TouchableHighlight onPress={() => navigation.navigate('Instruction', { exerciseID: item.ExerciseID })}>
                                             <Text style={styles.buttontext}>Start</Text>
                                         </TouchableHighlight>
                                     </View>
                                 }
                             </View>}
                     />
+
                 </View>
             </View>
         </ScrollView>
@@ -121,14 +121,14 @@ const styles = StyleSheet.create({
     },
     flatlistText: {
         color: '#1B3254',
-        fontSize: 25,
+        fontSize: 20,
         fontFamily: 'Montserrat-Regular',
         marginBottom: 10
     },
     circleGradientCompleted: {
         width: 95,
         height: 25,
-        borderRadius: 15,
+        borderRadius: 25,
         backgroundColor: 'grey',
         alignItems: 'center',
         justifyContent: 'center',
@@ -141,14 +141,14 @@ const styles = StyleSheet.create({
     },
 
     circleGradient: {
-        width: 95,
-        height: 25,
-        borderRadius: 15,
+        width: 120,
+        height: 35,
+        borderRadius: 25,
         backgroundColor: '#E34C67',
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 10,
-        alignContent: 'flex-end'
+        marginTop: 10
     },
     buttontext: {
         color: 'white',
